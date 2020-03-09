@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import AppNav from './AppNav'
-
-
 class MovieList extends Component {
     state = {  
         isLoading : true,
