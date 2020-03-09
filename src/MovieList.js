@@ -7,7 +7,7 @@ class MovieList extends Component {
     }
 
     async componentDidMount(){
-        const response= await fetch("/movie/movies")
+        const response= await fetch("http://reviewrestapi.us-west-2.elasticbeanstalk.com/movie/movies")
         const body=await response.json();
         this.setState({Movies :body , isLoading:false});
     }

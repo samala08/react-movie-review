@@ -23,7 +23,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://reviewrestapi.us-west-2.elasticbeanstalk.com",
   "eslintConfig": {
     "extends": "react-app"
   },
