@@ -7,6 +7,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.4.1",
+    "http-proxy-middleware": "^1.0.1",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.17",
     "react-cookies": "^0.1.1",
@@ -22,7 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://moviereviewaws-env.242k3wnsmg.us-east-1.elasticbeanstalk.com",
+  "proxy": "http://reviewrestapi.us-west-2.elasticbeanstalk.com",
   "eslintConfig": {
     "extends": "react-app"
   },
