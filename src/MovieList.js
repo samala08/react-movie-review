@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Table,Spinner } from 'reactstrap';
 import AppNav from './AppNav'
 class MovieList extends Component {
     state = {  
@@ -16,19 +17,34 @@ class MovieList extends Component {
         const { Movies , isLoading} = this.state
 
         if (isLoading)
-        return(<div>   <AppNav />Loading....</div>)
+        return(<div>   <AppNav /> <Spinner color="info" /></div>)
 
         else
         return ( 
             <div>   <AppNav />
-                <h2> Movies List </h2>
-                {
+                <h2 > Movies List </h2>
+
+                <Table>
+      <thead>
+        <tr>
+         
+          <th>Movies</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      {
                     Movies.map(mv =>
-                    <div>
+                        <tr>
+                        <td>
                         {mv.title}
-                    </div>    
+                    </td></tr>    
                     )
                 }
+       
+      </tbody>
+    </Table>
+               
             </div>
 
          );

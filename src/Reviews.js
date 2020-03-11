@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
-
+import { Table,Spinner } from 'reactstrap';
+import MovieReviewService from './api/MovieReviewService.js'
 
 import AppNav from './AppNav'
-import { Container, Form, FormGroup, Button } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 
-class Reviews1 extends Component {
-    state = {  
-        isLoading : true ,
-        Movies : []
-    }
+
+
+class Reviews extends Component {
+  
+  constructor(props){
+        super(props)
+        this.state ={ 
+            isLoading : true ,
+            Movies : [],
+            ReviewList : [],
+            mtitle : 'Avengers'
+        }
+
+   this.handleChange = this.handleChange.bind(this)
+   this.handleSubmit = this.handleSubmit.bind(this)
+
+   this.handleSuccessResponse = this.handleSuccessResponse.bind(this)
+     
+
+}
 
     async componentDidMount(){
         const response= await fetch("http://reviewrestapi.us-west-2.elasticbeanstalk.com/movie/movies")
@@ -16,42 +32,87 @@ class Reviews1 extends Component {
         this.setState({Movies :body , isLoading:false});
     }
 
-    render() { 
+     handleChange(event){
+        this.setState({mtitle : event.target.value})
+      //  alert(this.state.mtitle);
+    }
+    handleSubmit(){
+        MovieReviewService.executeReviewList(this.state.mtitle)
+        .then(response => this.handleSuccessResponse(response))
+    }
 
-        const { Movies , isLoading} = this.state
+  
+        handleSuccessResponse(response){
+           const body= response.data;
+            this.setState({ReviewList : body});
+    }
+
+    render() {
+        var divStyle = {
+           marginBottom:'25px',
+           marginRight:'20px'
+           
+          };
+          
+        
+        const {isLoading , ReviewList, Movies} = this.state
 
         if (isLoading)
-            return(<div>   <AppNav />Loading....</div>)
+            return(<div>   <AppNav /> <Spinner color="info" /></div>)
 
            let optionList = 
-                Movies.map(mv =>
-                <option>
+              Movies.map(mv =>
+              <option name="mtitle" value={mv.title} >
                     {mv.title}
                 </option>    
-                )
+               )
             
-        return (  <div>
+        return (  
+        <div>
             <AppNav/>
+        
+            <Container>
+                <h2> Get Reviews</h2>
+                
+                <label><span style={divStyle} ><b>Movie Title: </b></span></label>
+                    <select onChange={this.handleChange}>
+                    {optionList}
+                    </select>
+                    <div>
+                    <Button style={divStyle} color="primary" onClick={this.handleSubmit}> Click here</Button> 
+                    </div>
+            </Container>
+            
            
             <Container>
-            <h2> Get Reviews</h2>
-            <Form>
-                <FormGroup>
-                    <label for="movietitle"><b>Movie title </b></label>
-                   
-                <select>
-                {optionList}
-                  
-                </select>
-                 </FormGroup>
-                <FormGroup>
-                    <Button color="primary" type="submit">Get Reviews</Button>
-                </FormGroup>
-            </Form>
+                <div>
 
-            </Container>
+                    <Table>
+                    <thead>
+                    <tr>
+
+                    <th>Comment</th>
+                    <th>Rating</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        { ReviewList.map(rw =>
+                            <tr>
+                                <td>{rw.comment}</td>
+                                <td>{rw.rating}</td>
+                            </tr>                      
+                            )
+                        }
+                   </tbody>
+                    </Table>
+
+
+
+
+                </div>
+            </Container>    
         </div>);
     }
 }
  
-export default Reviews1;
+export default Reviews;

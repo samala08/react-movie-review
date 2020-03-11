@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Nav,Navbar,NavbarBrand,NavLink,NavItem } from 'reactstrap';
+import { Nav,Navbar,NavbarBrand,NavLink,NavItem} from 'reactstrap';
 
 class AppNav extends Component {
     state = {  }
@@ -8,7 +8,7 @@ class AppNav extends Component {
         return ( 
     <div>
         <Navbar color="dark" dark expand="md">
-            <NavbarBrand href="/"> <img src="moviereviewlogo.png" height="200" width="200"></img></NavbarBrand>
+            <NavbarBrand href="/"> <img src="moviereviewlogo.png" alt="Movie Review" height="200" width="200"></img></NavbarBrand>
             <Nav className="mr-auto" navbar>
                 <NavItem>
                     <NavLink href="/">Home</NavLink>

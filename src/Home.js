@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Badge } from 'reactstrap';
 import AppNav from './AppNav'
 
 class Home extends Component {
@@ -13,3 +12,4 @@ class Home extends Component {
 }
  
 export default Home;
+

@@ -5,7 +5,6 @@ import MovieList from './MovieList'
 import Reviews from './Reviews'
 import WriteReviews from './WriteReviews'
 
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -15,10 +14,11 @@ function App() {
     <div className="App">
     <Router>
      <Switch>
-          <Route path="/" exact="true" component={Home} />
-          <Route path="/movies" exact="true" component={MovieList}/>
-          <Route path="/reviews" exact="true" component={Reviews}/>
-          <Route path="/writereviews" exact="true" component={WriteReviews}/>
+          <Route path="/" exact={true} component={Home} />
+          <Route path="/movies" exact={true} component={MovieList}/>
+          <Route path="/reviews" exact={true} component={Reviews}/>
+          <Route path="/writereviews" exact={true} component={WriteReviews}/>
+          <Route path="/reviewslist" exact={true} component={WriteReviews}/>
        </Switch>
 
     </Router>
