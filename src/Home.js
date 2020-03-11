@@ -13,7 +13,7 @@ class Home extends Component {
 
         return ( <div>
             <AppNav />
-            <h1 className="display-3">Welcome to Cinema Sameksha</h1>
+            <h2 >Welcome to Cinema Sameksha</h2>
             <div style={divStyle}>
             <Carousel>
                 <Carousel.Item>
