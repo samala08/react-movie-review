@@ -15,7 +15,7 @@ class Home extends Component {
             <AppNav />
             <h2 >Welcome to Cinema Sameksha</h2>
             <div style={divStyle}>
-            <Carousel>
+            <Carousel  data-interval="100">
                 <Carousel.Item>
                     <img
                     className="d-block"

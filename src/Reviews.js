@@ -15,7 +15,7 @@ class Reviews extends Component {
             isLoading : true ,
             Movies : [],
             ReviewList : [],
-            mtitle : 'Avengers'
+            mtitle : ''
         }
 
    this.handleChange = this.handleChange.bind(this)
@@ -34,9 +34,14 @@ class Reviews extends Component {
 
      handleChange(event){
         this.setState({mtitle : event.target.value})
-      //  alert(this.state.mtitle);
+      // alert(this.state.mtitle);
     }
     handleSubmit(){
+       // alert(this.state.mtitle);
+
+        if( this.state.mtitle =='')
+             alert("Please select a valid Movie Title");
+
         MovieReviewService.executeReviewList(this.state.mtitle)
         .then(response => this.handleSuccessResponse(response))
     }
@@ -76,7 +81,8 @@ class Reviews extends Component {
                 
                 <label><span style={divStyle} ><b>Movie Title: </b></span></label>
                     <select onChange={this.handleChange}>
-                    {optionList}
+                    <option name="label" value='' >Select a movie title </option>
+                        {optionList}
                     </select>
                     <div>
                     <Button style={divStyle} color="primary" onClick={this.handleSubmit}> Click here</Button> 
