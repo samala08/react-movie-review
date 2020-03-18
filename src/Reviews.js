@@ -40,7 +40,7 @@ class Reviews extends Component {
        // alert(this.state.mtitle);
 
         if( this.state.mtitle =='')
-             alert("Please select a valid Movie Title");
+             alert("<b>Please select a valid Movie Title</b>");
 
         MovieReviewService.executeReviewList(this.state.mtitle)
         .then(response => this.handleSuccessResponse(response))
@@ -85,7 +85,7 @@ class Reviews extends Component {
                         {optionList}
                     </select>
                     <div>
-                    <Button style={divStyle} color="primary" onClick={this.handleSubmit}> Click here</Button> 
+                    <Button style={divStyle} color="success" onClick={this.handleSubmit}> Click here</Button> 
                     </div>
             </Container>
             

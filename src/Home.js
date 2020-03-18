@@ -8,6 +8,7 @@ class Home extends Component {
     render() { 
 
         var divStyle = { marginLeft: '30%'
+            
             };
            
 

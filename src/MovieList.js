@@ -21,29 +21,26 @@ class MovieList extends Component {
 
         else
         return ( 
-            <div>   <AppNav />
-                <h2 > Movies List </h2>
-
-                <Table>
-      <thead>
-        <tr>
-         
-          <th>Movies</th>
-        </tr>
-      </thead>
-      <tbody>
-
-      {
-                    Movies.map(mv =>
-                        <tr>
-                        <td>
-                        {mv.title}
-                    </td></tr>    
-                    )
-                }
-       
-      </tbody>
-    </Table>
+            <div> 
+                <AppNav />
+                    <Table bordered striped variant="dark">
+                        <thead>
+                            <tr>
+                            <th>Movies</th>
+                            <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            Movies.map(mv =>
+                                <tr>
+                                <td>{mv.title}</td>  <td>{mv.category}</td>
+                                </tr>    
+                            )
+                        }
+                        
+                        </tbody>
+                    </Table>
                
             </div>
 
