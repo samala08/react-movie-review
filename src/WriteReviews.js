@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import MovieReviewService from './api/MovieReviewService.js'
+import ReviewToast from './components/ReviewToast.js'
+
 
 import AppNav from './AppNav';
 import {  Card, CardBody,CardTitle, Container, Form, Row,FormGroup,Input,Button,Spinner, Col, CardHeader } from 'reactstrap';
@@ -13,36 +15,40 @@ class WriteReviews extends Component {
                         mtitle:'', rating:'',userName:'', comment:'',
                         Users :[]
                      }
+        this.state.show = false;
 
-                     this.submitCommit = this.submitCommit.bind(this)
-                     this.handleChange = this.handleChange.bind(this)
-                     this.handleSuccessResponse = this.handleSuccessResponse.bind(this)
+        this.submitCommit = this.submitCommit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSuccessResponse = this.handleSuccessResponse.bind(this)
         }
 
-    submitCommit(){
-    //event.preventDefault();
+    submitCommit(event){
+       
 
        MovieReviewService.executeAddReview(this.state.mtitle,this.state.rating,
                                                 this.state.userName,this.state.comment)
        .then(response => this.handleSuccessResponse(response))
        .catch(response=> alert(response.message))
-
+       event.preventDefault();
        }
 
        handleChange(event){
-         //  alert('handleChange');
         this.setState({[event.target.name] : event.target.value})
-      //alert(event.target.name);
-    }
+  }
 
 
     handleSuccessResponse(response){
       
-        alert('Review saved successfully for '+ this.state.mtitle +'. Thank You '+this.state.userName)
+        //alert('Review saved successfully for '+ this.state.mtitle +'. Thank You '+this.state.userName)
+
+        this.setState({show:true})
+        setTimeout(()=>this.setState({show:false}), 10000);
          this.setState({ mtitle : '',
                         rating: '',
                         userName: '',
                         comment:''});
+
+                      
  }
 
    
@@ -85,8 +91,13 @@ class WriteReviews extends Component {
 
              
             
-        return (  <div>
+        return ( 
+            
+            <div>
             <AppNav/>
+            <div style={{"display" : this.state.show ? "block" : "none"}}>
+                <ReviewToast></ReviewToast>
+            </div>
             <Container>
           
             <Card className={"border border-dark "}>
@@ -98,6 +109,7 @@ class WriteReviews extends Component {
                             <FormGroup>
                                 <CardTitle>Movie Title</CardTitle>
                                 <Input type="select" name="mtitle" id="mtitleId"  onChange={this.handleChange} required>
+                                    
                                     <option name="mtitle" value={mtitle} >Select a movie title </option>
                                     {optionList}
                                 </Input>
