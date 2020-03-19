@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Table,Spinner } from 'reactstrap';
-import AppNav from './AppNav'
+import { Table,Spinner, Container, Card, CardHeader, CardBody } from 'reactstrap';
+import AppNav from './components/AppNavLoggedIn'
 class MovieList extends Component {
     state = {  
         isLoading : true,
@@ -23,25 +23,30 @@ class MovieList extends Component {
         return ( 
             <div> 
                 <AppNav />
-                    <Table bordered striped variant="dark">
-                        <thead>
-                            <tr>
-                            <th>Movies</th>
-                            <th>Category</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            Movies.map(mv =>
-                                <tr>
-                                <td>{mv.title}</td>  <td>{mv.category}</td>
-                                </tr>    
-                            )
-                        }
-                        
-                        </tbody>
-                    </Table>
-               
+                <Container>
+                    <Card>
+                        <CardHeader><h3>Movies List</h3></CardHeader>
+                        <CardBody>
+                            <Table bordered striped variant="dark">
+                                <thead>
+                                    <tr>
+                                    <th>Movies</th>
+                                    <th>Category</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    Movies.map(mv =>
+                                        <tr>
+                                        <td>{mv.title}</td>  <td>{mv.category}</td>
+                                        </tr>    
+                                    )
+                                }                                
+                                </tbody>
+                            </Table>
+                        </CardBody>
+                    </Card>
+                    </Container>
             </div>
 
          );

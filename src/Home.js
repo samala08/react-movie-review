@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppNav from './AppNav'
+import AppNav from './components/AppNavLoggedOut'
 import Carousel from 'react-bootstrap/Carousel'
 
 class Home extends Component {

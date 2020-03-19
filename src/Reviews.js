@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Table,Spinner } from 'reactstrap';
 import MovieReviewService from './api/MovieReviewService.js'
 
-import AppNav from './AppNav'
+import AppNav from './components/AppNavLoggedIn'
 import { Container, Button } from 'reactstrap';
 
 
